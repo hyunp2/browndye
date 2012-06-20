@@ -1,0 +1,183 @@
+<appConfig xmlns="http://nbcr.sdsc.edu/opal/types"
+           xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <!-- metadata about the application being wrapped -->
+  <metadata appName="BrownDye: bd_top">
+    <usage> BrownDye: this runs bd_top on the input files and then starts nam_simulation. </usage>
+    <info>
+    </info>
+    
+    <!-- information about command-line arguments -->
+    <types> 
+        <!-- list of flags -->
+        <flags>
+        </flags>
+    
+        <!-- list of tagged parameters -->
+        <taggedParams>
+            <param>
+                <id>mol0_url</id>
+		<tag>-mol0url</tag>
+                <paramType>URL</paramType>
+                <ioType>INPUT</ioType>
+                <textDesc><![CDATA[ Molecule 0 URL]]></textDesc>
+            </param>
+            <param>
+                <id>mol0</id>
+		<tag>-mol0</tag>
+                <paramType>FILE</paramType>
+                <ioType>INPUT</ioType>
+                <textDesc><![CDATA[ Molecule 0 File]]></textDesc>
+            </param>
+
+            <param>
+                <id>mol1_url</id>
+		<tag>-mol1url</tag>
+                <paramType>URL</paramType>
+                <ioType>INPUT</ioType>
+                <textDesc><![CDATA[ Molecule 1 URL]]></textDesc>
+            </param>
+            <param>
+                <id>mol1</id>
+		<tag>-mol1</tag>
+                <paramType>FILE</paramType>
+                <ioType>INPUT</ioType>
+                <textDesc><![CDATA[ Molecule 1 File]]></textDesc>
+            </param>
+
+            <param>
+                <id>dx0_url</id>
+		<tag>-dx0url</tag>
+                <paramType>URL</paramType>
+                <ioType>INPUT</ioType>
+                <textDesc><![CDATA[ Molecule 0 APBS DX URL]]></textDesc>
+            </param>
+            <param>
+                <id>dx0</id>
+		<tag>-dx0</tag>
+                <paramType>FILE</paramType>
+                <ioType>INPUT</ioType>
+                <textDesc><![CDATA[ Molecule 0 APBS DX File]]></textDesc>
+            </param>
+
+            <param>
+                <id>dx1_url</id>
+		<tag>-dx1url</tag>
+                <paramType>URL</paramType>
+                <ioType>INPUT</ioType>
+                <textDesc><![CDATA[ Molecule 1 APBS DX URL]]></textDesc>
+            </param>
+            <param>
+                <id>dx1</id>
+		<tag>-dx1</tag>
+                <paramType>FILE</paramType>
+                <ioType>INPUT</ioType>
+                <textDesc><![CDATA[ Molecule 1 APBS DX File]]></textDesc>
+            </param>
+
+
+            <param>
+                <id>input</id>
+		<tag>-in</tag>
+                <paramType>FILE</paramType>
+                <ioType>INPUT</ioType>
+                <textDesc><![CDATA[ Input File]]></textDesc>
+            </param>
+
+            <param>
+                <id>input_url</id>
+		<tag>-inurl</tag>
+                <paramType>URL</paramType>
+                <ioType>INPUT</ioType>
+                <textDesc><![CDATA[ Input File URL]]></textDesc>
+            </param>
+
+            <param>
+                <id>rxn</id>
+		<tag>-rxn</tag>
+                <paramType>FILE</paramType>
+                <ioType>INPUT</ioType>
+                <textDesc><![CDATA[ Reactions File]]></textDesc>
+            </param>
+
+            <param>
+                <id>rxn_url</id>
+		<tag>-rxnurl</tag>
+                <paramType>URL</paramType>
+                <ioType>INPUT</ioType>
+                <textDesc><![CDATA[ Reactions File URL]]></textDesc>
+            </param>
+
+
+
+        </taggedParams>
+    
+        <!-- list of untagged parameters, in order -->
+        <untaggedParams>
+        </untaggedParams>
+
+        <!-- grouping of parameters -->
+        <groups>
+          <group>
+            <name>mol0_group</name>
+            <elements>mol0 mol0_url </elements>
+            <required>true</required>
+	    <exclusive>true</exclusive>
+            <textDesc>Molecule 0 File </textDesc>
+          </group>
+
+          <group>
+            <name>mol1_group</name>
+            <elements>mol1 mol1_url </elements>
+            <required>true</required>
+	    <exclusive>true</exclusive>
+            <textDesc>Molecule 1 File </textDesc>
+          </group>
+
+          <group>
+            <name>dx0_group</name>
+            <elements>dx0 dx0_url </elements>
+            <required>true</required>
+	    <exclusive>true</exclusive>
+            <textDesc>Molecule 0 APBS DX File </textDesc>
+          </group>
+
+          <group>
+            <name>dx1_group</name>
+            <elements>dx1 dx1_url </elements>
+            <required>true</required>
+	    <exclusive>true</exclusive>
+            <textDesc>Molecule 1 APBS DX File </textDesc>
+          </group>
+
+          <group>
+            <name>input_group</name>
+            <elements>input input_url </elements>
+            <required>true</required>
+	    <exclusive>true</exclusive>
+            <textDesc>Input File </textDesc>
+          </group>
+
+          <group>
+            <name>rxn_group</name>
+            <elements>rxn rxn_url </elements>
+            <required>true</required>
+	    <exclusive>true</exclusive>
+            <textDesc>Reaction File </textDesc>
+          </group>
+
+
+        </groups>
+    </types>
+
+  </metadata>
+
+  <!-- location of execution on the server -->
+
+  <binaryLocation>/opt/browndye/wrappers/bd_top_wrapper.py</binaryLocation>  
+
+  <!-- overrule default job manager, if need be -->
+<!--  <jobManagerFQCN>edu.sdsc.nbcr.opal.manager.ForkJobManager</jobManagerFQCN>  -->
+
+  <!-- whether this application is serial or parallel -->
+  <parallel>false</parallel>
+</appConfig>

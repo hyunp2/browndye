@@ -1,0 +1,1 @@
+path = '/opt/browndye/bin'

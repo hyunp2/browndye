@@ -1,0 +1,39 @@
+<?xml version="1.0" standalone="no"?>
+
+<kickstart>
+
+
+	<description>
+	opal configuration 
+	</description>
+
+	<copyright>
+	Copyright (c) 2000 - 2012 The Regents of the University of California.
+	All rights reserved. Rocks(r) v5.5/v6.0 www.rocksclusters.org
+	
+	</copyright>
+
+	<changelog>
+	</changelog>
+
+
+	<package>opal-browndye</package>
+<post>
+
+
+
+<file name="/opt/opal/deployed/deploy.sh" mode="append">
+#browndye
+$ANT -f $OPALXML deploy -DserviceName=bdTop -DappConfig=$OPALCONFIG/bd_top_config.xml
+$ANT -f $OPALXML deploy -DserviceName=computeRateConstant -DappConfig=$OPALCONFIG/compute_rate_constant_config.xml
+$ANT -f $OPALXML deploy -DserviceName=makeRxnFile -DappConfig=$OPALCONFIG/make_rxn_file_config.xml
+$ANT -f $OPALXML deploy -DserviceName=makeRxnPairs -DappConfig=$OPALCONFIG/make_rxn_pairs_config.xml
+$ANT -f $OPALXML deploy -DserviceName=pqr2xml -DappConfig=$OPALCONFIG/pqr2xml_config.xml
+
+</file>
+
+
+su - tomcat -c /opt/opal/deployed/deploy.sh
+</post>
+
+</kickstart>

@@ -1,0 +1,86 @@
+<appConfig xmlns="http://nbcr.sdsc.edu/opal/types"
+           xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <!-- metadata about the application being wrapped -->
+  <metadata appName="BrownDye: make_rxn_file">
+    <usage>  Generates file describing the reaction criteria for molecular association</usage>
+    <info>
+    </info>
+    
+    <!-- information about command-line arguments -->
+    <types> 
+        <!-- list of flags -->
+        <flags>
+        </flags>
+    
+        <!-- list of tagged parameters -->
+        <taggedParams>
+            <param>
+                <id>pairs_url</id>
+		<tag>-pairsurl</tag>
+                <paramType>URL</paramType>
+                <ioType>INPUT</ioType>
+                <textDesc><![CDATA[ Pairs input URL]]></textDesc>
+            </param>
+            <param>
+                <id>pairs</id>
+		<tag>-pairs</tag>
+                <paramType>FILE</paramType>
+                <ioType>INPUT</ioType>
+                <textDesc><![CDATA[ Pairs Input File]]></textDesc>
+            </param>
+
+            <param>
+                <id>distance</id>
+		<tag>-distance</tag>
+                <paramType>FLOAT</paramType>
+                <ioType>INPUT</ioType>
+                <textDesc><![CDATA[ Reaction Distance]]></textDesc>
+            </param>
+
+            <param>
+                <id>nneeded</id>
+		<tag>-nneeded</tag>
+                <paramType>INT</paramType>
+                <ioType>INPUT</ioType>
+                <textDesc><![CDATA[ Number of Required Contacts]]></textDesc>
+            </param>
+
+            <param>
+                <id>out</id>
+		<tag>-out</tag>
+                <paramType>STRING</paramType>
+                <ioType>INPUT</ioType>
+                <textDesc><![CDATA[ Output File]]></textDesc>
+            </param>
+
+        </taggedParams>
+    
+        <!-- list of untagged parameters, in order -->
+        <untaggedParams>
+        </untaggedParams>
+
+        <!-- grouping of parameters -->
+        <groups>
+          <group>
+            <name>pairs_group</name>
+            <elements>pairs pairs_url </elements>
+            <required>true</required>
+	    <exclusive>true</exclusive>
+            <textDesc>Pair file </textDesc>
+          </group>
+
+
+        </groups>
+    </types>
+
+  </metadata>
+
+  <!-- location of execution on the server -->
+  <binaryLocation>/opt/browndye/wrappers/make_rxn_file_wrapper.py</binaryLocation>
+  
+  <!-- overrule default job manager, if need be -->
+  <!-- <jobManagerFQCN>edu.sdsc.nbcr.opal.manager.ForkJobManager</jobManagerFQCN> -->
+
+  <!-- whether this application is serial or parallel -->
+  <parallel>false</parallel>
+</appConfig>

@@ -1,0 +1,61 @@
+<appConfig xmlns="http://nbcr.sdsc.edu/opal/types"
+           xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <!-- metadata about the application being wrapped -->
+  <metadata appName="BrownDye: compute_rate_constant">
+    <usage> Computes the 2nd-order association rate constant from the output of nam_simulation </usage>
+    <info>
+    </info>
+    
+    <!-- information about command-line arguments -->
+    <types> 
+        <!-- list of flags -->
+        <flags>
+        </flags>
+    
+        <!-- list of tagged parameters -->
+        <taggedParams>
+            <param>
+                <id>input_url</id>
+		<tag>-url</tag>
+                <paramType>URL</paramType>
+                <ioType>INPUT</ioType>
+                <textDesc><![CDATA[ Input URL ]]></textDesc>
+            </param>
+
+            <param>
+                <id>input_file</id>
+		<tag>-file</tag>
+                <paramType>FILE</paramType>
+                <ioType>INPUT</ioType>
+                <textDesc><![CDATA[ Input File]]></textDesc>
+            </param>
+
+        </taggedParams>
+    
+        <!-- list of untagged parameters, in order -->
+        <untaggedParams>
+        </untaggedParams>
+
+        <!-- grouping of parameters -->
+        <groups>
+          <group>
+            <name>inputParam</name>
+            <elements>input_url input_file </elements>
+            <required>true</required>
+	    <exclusive>true</exclusive>
+            <textDesc>Input files to be used </textDesc>
+          </group>
+        </groups>
+    </types>
+
+  </metadata>
+
+  <!-- location of execution on the server -->
+  <binaryLocation>/opt/browndye/wrappers/compute_rate_constant_wrapper.py</binaryLocation>
+  
+  <!-- overrule default job manager, if need be -->
+  <!-- <jobManagerFQCN>edu.sdsc.nbcr.opal.manager.ForkJobManager</jobManagerFQCN> -->
+
+  <!-- whether this application is serial or parallel -->
+  <parallel>false</parallel>
+</appConfig>

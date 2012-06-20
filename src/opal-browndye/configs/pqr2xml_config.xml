@@ -1,0 +1,58 @@
+<appConfig xmlns="http://nbcr.sdsc.edu/opal/types"
+           xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <!-- metadata about the application being wrapped -->
+  <metadata appName="Browndye: pqr2xml">
+    <usage> Converts pqr file to xml file </usage>
+    <info>
+    </info>
+    
+    <!-- information about command-line arguments -->
+    <types> 
+        <!-- list of flags -->
+        <flags>
+        </flags>
+    
+        <!-- list of tagged parameters -->
+        <taggedParams>
+            <param>
+                <id>input_url</id>
+		<tag>-url</tag>
+                <paramType>URL</paramType>
+                <ioType>INPUT</ioType>
+                <textDesc><![CDATA[ Input URL ]]></textDesc>
+            </param>
+
+            <param>
+                <id>input_file</id>
+		<tag>-file</tag>
+                <paramType>FILE</paramType>
+                <ioType>INPUT</ioType>
+                <textDesc><![CDATA[ Input File]]></textDesc>
+            </param>
+
+        </taggedParams>
+    
+        <!-- list of untagged parameters, in order -->
+        <untaggedParams>
+        </untaggedParams>
+
+        <!-- grouping of parameters -->
+        <groups>
+          <group>
+            <name>inputParam</name>
+            <elements>input_url input_file </elements>
+            <required>true</required>
+	    <exclusive>true</exclusive>
+            <textDesc>Input files to be used </textDesc>
+          </group>
+        </groups>
+    </types>
+
+  </metadata>
+
+  <!-- location of execution on the server -->
+  <binaryLocation>/opt/browndye/wrappers/pqr2xml_wrapper.py</binaryLocation>
+  
+  <!-- whether this application is serial or parallel -->
+  <parallel>false</parallel>
+</appConfig>

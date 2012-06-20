@@ -1,0 +1,121 @@
+<appConfig xmlns="http://nbcr.sdsc.edu/opal/types"
+           xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <!-- metadata about the application being wrapped -->
+  <metadata appName="Browndye: make_rxn_pairs">
+    <usage> Generates file of possible reaction-defining pairs from pair of molecules </usage>
+    <info>
+    </info>
+    
+    <!-- information about command-line arguments -->
+    <types> 
+        <!-- list of flags -->
+        <flags>
+        </flags>
+    
+        <!-- list of tagged parameters -->
+        <taggedParams>
+            <param>
+                <id>mol0url</id>
+		<tag>-mol0url</tag>
+                <paramType>URL</paramType>
+                <ioType>INPUT</ioType>
+                <textDesc><![CDATA[ Molecule 0 input URL]]></textDesc>
+            </param>
+            <param>
+                <id>mol0</id>
+		<tag>-mol0</tag>
+                <paramType>FILE</paramType>
+                <ioType>INPUT</ioType>
+                <textDesc><![CDATA[ Molecule 0 Input File]]></textDesc>
+            </param>
+
+            <param>
+                <id>mol1url</id>
+		<tag>-mol1url</tag>
+                <paramType>URL</paramType>
+                <ioType>INPUT</ioType>
+                <textDesc><![CDATA[ Molecule 1 input URL]]></textDesc>
+            </param>
+            <param>
+                <id>mol1</id>
+		<tag>-mol1</tag>
+                <paramType>FILE</paramType>
+                <ioType>INPUT</ioType>
+                <textDesc><![CDATA[ Molecule 1 Input File]]></textDesc>
+            </param>
+
+            <param>
+                <id>ctypesurl</id>
+		<tag>-ctypesurl</tag>
+                <paramType>URL</paramType>
+                <ioType>INPUT</ioType>
+                <textDesc><![CDATA[ Contact Types URL]]></textDesc>
+            </param>
+            <param>
+                <id>ctypes</id>
+		<tag>-ctypes</tag>
+                <paramType>FILE</paramType>
+                <ioType>INPUT</ioType>
+                <textDesc><![CDATA[ Contact Types File]]></textDesc>
+            </param>
+
+            <param>
+                <id>dist</id>
+		<tag>-dist</tag>
+                <paramType>FLOAT</paramType>
+                <ioType>INPUT</ioType>
+                <textDesc><![CDATA[ Search Distance]]></textDesc>
+            </param>
+
+            <param>
+                <id>out</id>
+		<tag>-out</tag>
+                <paramType>STRING</paramType>
+                <ioType>INPUT</ioType>
+                <textDesc><![CDATA[ Output File]]></textDesc>
+            </param>
+
+        </taggedParams>
+    
+        <!-- list of untagged parameters, in order -->
+        <untaggedParams>
+        </untaggedParams>
+
+        <!-- grouping of parameters -->
+        <groups>
+          <group>
+            <name>mol0_group</name>
+            <elements>mol0 mol0url </elements>
+            <required>true</required>
+	    <exclusive>true</exclusive>
+            <textDesc>Molecule 0 pqrxml files </textDesc>
+          </group>
+
+          <group>
+            <name>mol1_group</name>
+            <elements>mol1 mol1url </elements>
+            <required>true</required>
+	    <exclusive>true</exclusive>
+            <textDesc>Molecule 1 pqrxml files </textDesc>
+          </group>
+
+          <group>
+            <name>ctypes_group</name>
+            <elements>ctypes ctypesurl </elements>
+            <required>true</required>
+	    <exclusive>true</exclusive>
+            <textDesc>  Contacts Type</textDesc>
+          </group>
+
+	 
+        </groups>
+    </types>
+
+  </metadata>
+
+  <!-- location of execution on the server -->
+  <binaryLocation>/opt/browndye/wrappers/make_rxn_pairs_wrapper.py</binaryLocation>
+  
+  <!-- whether this application is serial or parallel -->
+  <parallel>false</parallel>
+</appConfig>

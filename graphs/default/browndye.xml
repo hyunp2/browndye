@@ -1,0 +1,37 @@
+<?xml version="1.0" standalone="no"?>
+
+<graph>
+
+	<description>
+
+	The browndye Roll
+
+	</description>
+
+	<copyright>
+	Copyright (c) 2000 - 2012 The Regents of the University of California.
+	All rights reserved. Rocks(r) v5.5/v6.0 www.rocksclusters.org
+	
+	</copyright>
+
+	<changelog>
+	$Log: browndye.xml,v $
+	Revision 1.1  2012/06/20 00:22:15  clem
+	first version of the browndye roll
+	
+	</changelog>
+
+	<!-- add edges here -->
+        <edge from="client" to="browndye"/>
+        <edge from="server" to="browndye"/>
+
+        <!-- opal deployment -->
+        <edge from="client" to="opal-browndye" cond="opal_server"/>
+        <edge from="server" to="opal-browndye"/>
+
+        <order head="opal-common">
+                <tail>opal-browndye</tail>
+        </order>
+	
+
+</graph>
