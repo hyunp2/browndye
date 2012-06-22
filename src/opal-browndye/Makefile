@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.1 2012/06/20 00:22:17 clem Exp $
+# $Id: Makefile,v 1.2 2012/06/22 17:43:01 clem Exp $
 #
 # @Copyright@
 # 
@@ -55,6 +55,9 @@
 # @Copyright@
 #
 # $Log: Makefile,v $
+# Revision 1.2  2012/06/22 17:43:01  clem
+# some compilation fixes
+#
 # Revision 1.1  2012/06/20 00:22:17  clem
 # first version of the browndye roll
 #
@@ -63,14 +66,18 @@ REDHAT.ROOT = $(CURDIR)/../../
 
 -include $(ROCKSROOT)/etc/Rules.mk
 include Rules.mk
-
+FILES	= bd_top_config.xml make_rxn_file_config.xml pqr2xml_config.xml compute_rate_constant_config.xml deploy.sh make_rxn_pairs_config.xml
 
 build:
 	echo build
 	
 install::
 	mkdir -p $(ROOT)/$(PKGROOT)
-	install  -t $(ROOT)/$(PKGROOT) configs/*
+	(\
+		for i in $(FILES);do\
+			install  -t $(ROOT)/$(PKGROOT) configs/$$i;\
+		done\
+	)
 
 clean::
 	rm -rf $(NAME)-$(VERSION)
