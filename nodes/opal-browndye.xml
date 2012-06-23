@@ -32,8 +32,6 @@ $ANT -f $OPALXML deploy -DserviceName=pqr2xml -DappConfig=$OPALCONFIG/pqr2xml_co
 
 </file>
 
-
-su - tomcat -c /opt/opal/deployed/deploy.sh
 </post>
 
 </kickstart>

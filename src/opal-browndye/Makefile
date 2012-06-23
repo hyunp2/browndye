@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.2 2012/06/22 17:43:01 clem Exp $
+# $Id: Makefile,v 1.3 2012/06/23 02:42:58 clem Exp $
 #
 # @Copyright@
 # 
@@ -55,6 +55,9 @@
 # @Copyright@
 #
 # $Log: Makefile,v $
+# Revision 1.3  2012/06/23 02:42:58  clem
+# deploy.sh should not be executed in other roll (only opal runs it)
+#
 # Revision 1.2  2012/06/22 17:43:01  clem
 # some compilation fixes
 #
@@ -66,7 +69,7 @@ REDHAT.ROOT = $(CURDIR)/../../
 
 -include $(ROCKSROOT)/etc/Rules.mk
 include Rules.mk
-FILES	= bd_top_config.xml make_rxn_file_config.xml pqr2xml_config.xml compute_rate_constant_config.xml deploy.sh make_rxn_pairs_config.xml
+FILES	= bd_top_config.xml make_rxn_file_config.xml pqr2xml_config.xml compute_rate_constant_config.xml make_rxn_pairs_config.xml
 
 build:
 	echo build
