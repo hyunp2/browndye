@@ -18,20 +18,4 @@
 
 
 	<package>opal-browndye</package>
-<post>
-
-
-
-<file name="/opt/opal/deployed/deploy.sh" mode="append">
-#browndye
-$ANT -f $OPALXML deploy -DserviceName=bdTop -DappConfig=$OPALCONFIG/bd_top_config.xml
-$ANT -f $OPALXML deploy -DserviceName=computeRateConstant -DappConfig=$OPALCONFIG/compute_rate_constant_config.xml
-$ANT -f $OPALXML deploy -DserviceName=makeRxnFile -DappConfig=$OPALCONFIG/make_rxn_file_config.xml
-$ANT -f $OPALXML deploy -DserviceName=makeRxnPairs -DappConfig=$OPALCONFIG/make_rxn_pairs_config.xml
-$ANT -f $OPALXML deploy -DserviceName=pqr2xml -DappConfig=$OPALCONFIG/pqr2xml_config.xml
-
-</file>
-
-</post>
-
 </kickstart>

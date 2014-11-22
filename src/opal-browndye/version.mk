@@ -1,3 +1,3 @@
-PKGROOT		= /opt/opal/deployed/
+PKGROOT		= /opt/tomcat/deployed/
 NAME    	= opal-browndye
 RELEASE 	= 1
