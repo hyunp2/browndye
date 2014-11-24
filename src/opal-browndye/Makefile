@@ -69,7 +69,7 @@ REDHAT.ROOT = $(CURDIR)/../../
 
 -include $(ROCKSROOT)/etc/Rules.mk
 include Rules.mk
-FILES	= bd_top_config.xml make_rxn_file_config.xml pqr2xml_config.xml compute_rate_constant_config.xml make_rxn_pairs_config.xml
+FILES	= bdTop.xml  computeRateConstant.xml  makeRxnFile.xml  makeRxnPairs.xml  pqr2xml.xml
 
 build:
 	echo build
