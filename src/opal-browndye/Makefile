@@ -78,7 +78,7 @@ install::
 	mkdir -p $(ROOT)/$(PKGROOT)
 	(\
 		for i in $(FILES);do\
-			install  -t $(ROOT)/$(PKGROOT) configs/$$i;\
+			install -m644  -t $(ROOT)/$(PKGROOT) configs/$$i;\
 		done\
 	)
 
