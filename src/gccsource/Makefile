@@ -50,34 +50,44 @@
 # BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
 # WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
 # OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
-# IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # 
-# @Copyright@
-#
-# $Log: Makefile,v $
-# Revision 1.1  2012/06/20 00:22:15  clem
-# first version of the browndye roll
-#
 
 REDHAT.ROOT = $(CURDIR)/../../
 
 -include $(ROCKSROOT)/etc/Rules.mk
 include Rules.mk
 
-
-build:
-	gunzip -c $(NAME)-$(VERSION).$(TARBALL_POSTFIX) | $(TAR) -xf -
+pre-build: 
+	echo "building gcc for source"
+	tar xzvf $(NAME)-$(VERSION).$(TARBALL_POSTFIX) 
+	mkdir $(OBJDIR)
 	( 							\
-		cd $(NAME);				\
-		$(MAKE) all;					\
+		cd $(OBJDIR);		        	\
+		../$(ARCHIVE)/configure --disable-multilib --enable-languages=c,c++,fortran --prefix=/opt/$(NAME)$(VERSION); \
+		nohup make -j 4 & ; \
+		make  install; \
 	)
+
+pre-rpm:: pre-build 
+	rocks create package $(PKGROOT)/$(NAME)$(VERSION) $(NAME)-$(VERSION)
+	# move rpms to rolls RPMS/
+	if [ ! -d $(REDHAT.ROOT)/RPMS/$(ARCH) ]; then \
+	    mkdir -p $(REDHAT.ROOT)/RPMS/$(ARCH); \
+	fi
+	for rpm in `find . -name '$(NAME)-$(VERSION)*$(ARCH).rpm'`; do        \
+	    echo "Copying $$rpm";                       \
+	    /bin/mv $$rpm $(REDHAT.ROOT)/RPMS/$(ARCH);  \
+	done
+
+build: 
+	echo "Nothing to do. Make sure bootstrap.sh was run in $(REDHAT.ROOT)"
 	
+rpm:: 
+	echo "Nothing to do"
+
 install::
-	mkdir -p $(ROOT)/$(PKGROOT)
-	(							\
-		cp -a $(NAME)/* $(ROOT)/$(PKGROOT);		\
-		cp -a wrappers $(ROOT)/$(PKGROOT)/;		\
-	)
+	echo "Nothing to install"
 
 clean::
-	rm -rf $(NAME)
+	rm -rf $(ARCHIVE) $(ARCHIVE)-build
+

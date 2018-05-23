@@ -65,19 +65,31 @@ REDHAT.ROOT = $(CURDIR)/../../
 include Rules.mk
 
 
+pretar:: $(VERSION.MK.INCLUDE)
+
+$(VERSION.MK.INCLUDE): 
+	if [ -f $(VERSION.MK.MASTER.DIR)/$(VERSION.MK.MASTER) ]; then \
+		/bin/cp $(VERSION.MK.MASTER.DIR)/$(VERSION.MK.MASTER) $@; \
+	fi
+
 build:
 	gunzip -c $(NAME)-$(VERSION).$(TARBALL_POSTFIX) | $(TAR) -xf -
 	( 							\
-		cd $(NAME);				\
-		$(MAKE) all;					\
+		cd $(NAME)-$(VERSION);		        	\
+		export PATH=/opt/gcc$(GCCVERSION)/bin:$$PATH ;           \
+		export LD_LIBRARY_PATH=/opt/gcc$(GCCVERSION)/lib:$$LD_LIBRARY_PATH; \
+		./configure -prefix $(PKGROOT);  		\
+		$(MAKE) world.opt;				\
 	)
 	
 install::
 	mkdir -p $(ROOT)/$(PKGROOT)
 	(							\
-		cp -a $(NAME)/* $(ROOT)/$(PKGROOT);		\
-		cp -a wrappers $(ROOT)/$(PKGROOT)/;		\
+		cd $(NAME)-$(VERSION);		        	\
+		$(MAKE) install;				\
+		$(MAKE) DESTDIR=$(ROOT) install;			\
 	)
 
 clean::
-	rm -rf $(NAME)
+	rm -rf $(NAME)-$(VERSION)
+	rm -rf $(VERSION.MK.INCLUDE)

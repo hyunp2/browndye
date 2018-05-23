@@ -1,13 +1,11 @@
-# $Id: Makefile,v 1.1 2012/06/20 00:22:15 clem Exp $
 #
 # @Copyright@
 # 
 # 				Rocks(r)
 # 		         www.rocksclusters.org
-# 		         version 5.5 (Mamba)
-# 		         version 6.0 (Mamba)
+# 		         version 6.2 (SideWinder)
 # 
-# Copyright (c) 2000 - 2012 The Regents of the University of California.
+# Copyright (c) 2000 - 2014 The Regents of the University of California.
 # All rights reserved.	
 # 
 # Redistribution and use in source and binary forms, with or without
@@ -54,30 +52,37 @@
 # 
 # @Copyright@
 #
-# $Log: Makefile,v $
-# Revision 1.1  2012/06/20 00:22:15  clem
-# first version of the browndye roll
-#
 
 REDHAT.ROOT = $(CURDIR)/../../
 
 -include $(ROCKSROOT)/etc/Rules.mk
 include Rules.mk
+include $(NBCRDEVEL)/NBCR.mk
 
+pretar:: $(VERSION.MK.INCLUDE)
 
-build:
-	gunzip -c $(NAME)-$(VERSION).$(TARBALL_POSTFIX) | $(TAR) -xf -
-	( 							\
-		cd $(NAME);				\
-		$(MAKE) all;					\
-	)
-	
-install::
-	mkdir -p $(ROOT)/$(PKGROOT)
-	(							\
-		cp -a $(NAME)/* $(ROOT)/$(PKGROOT);		\
-		cp -a wrappers $(ROOT)/$(PKGROOT)/;		\
-	)
+$(VERSION.MK.INCLUDE): 
+	if [ -f $(VERSION.MK.MASTER.DIR)/$(VERSION.MK.MASTER) ]; then \
+		grep "^VERSION" $(VERSION.MK.MASTER.DIR)/$(VERSION.MK.MASTER) > $@; \
+	fi
+	if [ -f $(GCC.MK.MASTER.DIR)/$(GCC.MK.MASTER) ]; then \
+		grep "^GCCVERSION" $(GCC.MK.MASTER.DIR)/$(GCC.MK.MASTER) >> $@; \
+	fi
+
+MODULEFILES = browndye.module browndye.version
+
+ADDSED = \
+	-e s%@DIR@%$(DIR)%g \
+	-e s%@GCCVERSION@%$(GCCVERSION)%g 
+
+%: %.in
+	$(SED) $(SEDSCRIPT) $(ADDSED) $^ > $@
+
+build: $(MODULEFILES)
+
+install:: modulefile-install
 
 clean::
-	rm -rf $(NAME)
+	rm -rf $(NAME).spec.* 
+	rm -rf $(MODULEFILES)
+	rm -rf $(VERSION.MK.INCLUDE)

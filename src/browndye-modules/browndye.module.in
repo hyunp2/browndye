@@ -1,0 +1,7 @@
+#%Module1.0
+module-whatis "browndye"
+module-whatis "Version: @VERSION@"
+module-whatis "Description: browndye"
+prepend-path PATH /opt/gcc@GCCVERSION@/bin:@DIR@/bin
+prepend-path LD_LIBRARY_PATH /opt/gcc@GCCVERSION@/lib:/opt/gcc@GCCVERSION@/lib64:@DIR@/lib
+
